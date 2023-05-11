@@ -1,9 +1,17 @@
 import './App.css'
+import { ChatWindow } from './components'
 
 function App() {
 
   return (
-    <h1 className='text-red-500'>HELLO WORLD</h1>       
+    <div className='w-full h-screen bg-bg-primary'>
+      <div className='h-[20%] flex justify-center items-center'>
+        <h1 className='text-6xl text-white font-bold'> Real Time Chat App</h1>
+      </div>
+      <div className='h-[80%] flex justify-center'>
+        <ChatWindow/>       
+      </div>
+    </div>
   )
 }
 

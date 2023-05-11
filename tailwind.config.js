@@ -5,6 +5,10 @@ export default {
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
+      colors:{
+        'bg-primary':"#232C33",
+        'bg-secondary':"#323F49"
+      }
     },
   },
   variants: {
