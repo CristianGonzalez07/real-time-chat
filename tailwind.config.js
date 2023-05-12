@@ -1,3 +1,4 @@
+import scrollbar from 'tailwind-scrollbar';
 
 export default {
   mode: 'jit',
@@ -14,5 +15,5 @@ export default {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [scrollbar],
 }

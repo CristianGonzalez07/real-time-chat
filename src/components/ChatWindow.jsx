@@ -44,7 +44,7 @@ const ChatWindow = () => {
 
   return (
     <>
-      <div className='h-[90%] overflow-y-scroll pt-1' id="chatWindow">
+      <div className='h-[90%] overflow-y-scroll pt-1 scrollbar-thin scrollbar-thumb-[white]' id="chatWindow">
         {!loading && messages.map(msg => (
           <Message key={msg._id} msg={msg}/>
         ))}
