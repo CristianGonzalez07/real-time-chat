@@ -1,14 +1,17 @@
-import { useQuery, useSubscription, useMutation, gql } from '@apollo/client';
+import { useLazyQuery, useSubscription, useMutation, gql } from '@apollo/client';
 import { GetMessages, MessageSent, SendMessage } from '../graphql/index'
 import { useEffect, useState } from 'react';
+import { useAuth } from '../hooks';
 import Message from './Message';
 import ChatInput from './ChatInput';
 
-const ChatWindow = () => {
-  const [messages, setMessages] = useState([])
 
+const ChatWindow = () => {
+  let { user } = useAuth();
+  user = JSON.parse(user);
+  const [messages, setMessages] = useState([])
   const GET_MESSAGES = gql`${GetMessages}`;
-  const { loading } = useQuery(GET_MESSAGES,{
+  const [getMessagesQuery, { loading }] = useLazyQuery(GET_MESSAGES,{
     onCompleted: (data) => {
       if(data.getMessages){
         setMessages(data.getMessages);
@@ -17,10 +20,15 @@ const ChatWindow = () => {
   });
 
   useEffect(() => {
+    getMessagesQuery()
+  },[])
+
+  useEffect(() => {
     var chatWindow = document.getElementById("chatWindow");
     var lastMsg = chatWindow.lastChild;
     lastMsg?.scrollIntoView();
   },[messages])
+  
   
   const MESSAGE_SENT = gql`${MessageSent}`;
   useSubscription(
@@ -50,7 +58,7 @@ const ChatWindow = () => {
         ))}
       </div>
       <ChatInput 
-        onSubmit={(data) => data.message.trim() !== "" ? send_message({variables:{content:data.message}}) : null}
+        onSubmit={(data) => data.message.trim() !== "" ? send_message({variables:{content:data.message, owner:user._id}}) : null}
         isLoading={isLoading}
       />
     </>

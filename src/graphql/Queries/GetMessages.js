@@ -3,5 +3,6 @@ export const GetMessages = `query GetMessages {
     _id
     content
     timestamp
+    owner
   }
 }`
