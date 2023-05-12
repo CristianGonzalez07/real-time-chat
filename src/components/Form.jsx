@@ -1,10 +1,17 @@
 import { useForm } from "react-hook-form";
 import PropTypes from 'prop-types';
+import Spinner from "./Spinner";
 
 const Form = ({inputs, onSubmit, buttonText, isLoading}) => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+
+  const handleFormSubmit = (data) => {
+    onSubmit(data);
+    reset(); // Reinicia el formulario después de enviarlo
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(handleFormSubmit)}>
       {inputs.map((input, index)=> {
         return (
           <div className="my-10" key={`input-${index}`}>
@@ -19,7 +26,6 @@ const Form = ({inputs, onSubmit, buttonText, isLoading}) => {
               type={input.type}
               className="bg-transparent border-b-2 border-green-500 text-white font-bold text-sm block w-full outline-none"
               {...register(input.label, { required: true })}
-                
             />
             {errors[input.label] && input.error}
           </div>
@@ -28,8 +34,10 @@ const Form = ({inputs, onSubmit, buttonText, isLoading}) => {
       <div className="flex justify-center mt-20">
         <button 
           type="submit" 
-          className={`text-white bg-green-500 rounded-lg p-3 ml-1 text-sm lg:text-lg font-bold flex items-center`}
+          className={`text-white bg-green-500 ${isLoading ? "opacity-50": ""} rounded-lg p-3 ml-1 text-sm lg:text-lg font-bold flex items-center`}
+          disabled={isLoading}  
         >
+          {isLoading && <Spinner/>}
           {buttonText}
         </button>
       </div>

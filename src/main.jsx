@@ -11,7 +11,7 @@ import App from './App.jsx';
 import './index.css';
 
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.R34_z8soWATKGfeHDwF9KgXzwgZt2QjDH5d55tyE4Kc"
+const token = localStorage.getItem("token");
 
 const httpLink = new HttpLink({
   uri: 'http://localhost:4000/graphql',

@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
   // call this function to sign out logged in user
   const logout = () => {
     setUser(null);
+    localStorage.setItem("token","")
     navigate("/login", { replace: true });
   };
 

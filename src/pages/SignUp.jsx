@@ -4,7 +4,8 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useMutation, gql } from '@apollo/client';
 import { SignUp } from '../graphql';
 import { useAuth } from '../hooks/useAuth';
-import { ToastContainer, Slide, toast } from 'react-toastify';
+import { notify } from '../utils/notify';
+
 import 'react-toastify/dist/ReactToastify.css';
 
 const inputs = [
@@ -24,14 +25,6 @@ const inputs = [
     error:<p className="text-red-600 text-xs font-bold mt-2">This field is required*</p>,
   }
 ];
-
-const notify = (type,text) => {
-  if(type === "success"){
-    toast.success(text);
-  }else{
-    toast.error(text);
-  }
-};
 
 const SignUpForm = () => {
   const { user } = useAuth();
