@@ -3,10 +3,13 @@ import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { createClient } from 'graphql-ws';
 import { getMainDefinition } from '@apollo/client/utilities';
 import { setContext } from '@apollo/client/link/context';
+import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './hooks';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
+
 
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.R34_z8soWATKGfeHDwF9KgXzwgZt2QjDH5d55tyE4Kc"
 
@@ -52,8 +55,13 @@ const client = new ApolloClient({
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
+      </AuthProvider>
+    </BrowserRouter>
+
   </React.StrictMode>
 );

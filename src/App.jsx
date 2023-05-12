@@ -1,17 +1,28 @@
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { publicRoutes, protectedRoutes } from './pages/index'
+import { ProtectedRoute } from './components/ProtectedRoute';
+import { Main } from './Layouts/index';
 import './App.css'
-import { ChatWindow } from './components'
 
 function App() {
 
   return (
-    <div className='w-full h-screen bg-bg-primary'>
-      <div className='h-[20%] flex justify-center items-center'>
-        <h1 className='text-6xl text-white font-bold'> Real Time Chat App</h1>
-      </div>
-      <div className='h-[80%] flex justify-center'>
-        <ChatWindow/>       
-      </div>
-    </div>
+    <Routes>
+      <Route path="*" element={<Navigate to="/login" />} />
+      <Route path="/*" element={<Navigate to="/" />} />
+      {
+        publicRoutes.map((data, index) => (
+          <Route onUpdate={() => window.scrollTo(0, 0)} exact={true} path={data.path} element={<Main Child={data.component} title={data.title}/>} key={index}/>
+        ))
+      }
+      <Route element={<ProtectedRoute />}>
+        {
+          protectedRoutes.map((data, index) => (
+            <Route onUpdate={() => window.scrollTo(0, 0)} exact={true} path={data.path} element={<Main Child={data.component} title={data.title}/>} key={publicRoutes.length + index}/>
+          ))
+        }
+      </Route>
+    </Routes>
   )
 }
 
