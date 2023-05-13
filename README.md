@@ -1,37 +1,38 @@
-# Real-Time Chat
+## Real-Time Chat
+  ¡Welcome to the Real-Time Chat project! This project is a real-time chat application that allows users to communicate with each other.
 
-¡Bienvenido al proyecto Real-Time Chat! Este proyecto es una aplicación de chat en tiempo real que permite a los usuarios comunicarse entre sí.
+## Prerequisites
+  Make sure you have Node.js installed on your machine.
 
-## Configuración
-
-1. Clona este repositorio en tu máquina local utilizando el siguiente comando:
+## Setup
+1. Clone this repository to your local machine using the following command:
 
   ```bash
   git clone https://github.com/CristianGonzalez07/real-time-chat.git
   ```
 
-2. Navega al directorio del proyecto:
+2. Navigate to the project directory:
 
   ```bash
   cd real-time-chat
   ```
 
-3. Instala las dependencias necesarias ejecutando el siguiente comando:
+3. Install the necessary dependencies by running the following command:
 
   ```bash
   npm install
   ```
 
-4. Crea un archivo .env en la raíz del proyecto con la siguiente estructura:
+4. Create a .env file in the root of the project with the following structure:
 
   ```bash
-  VITE_API_URL='url-de-tu-api'
-  VITE_WS_URL='url-del-ws-tu-api'
+  VITE_API_URL='api-url'
+  VITE_WS_URL='ws-api-ul'
   ```
 
-## Ejecución
+## Execution
 
-1.  Ejecuta el siguiente comando:
+1.  Run the following command:
 
   ```bash
   npm start
