@@ -35,5 +35,5 @@
 1.  Run the following command:
 
   ```bash
-  npm start
+  npm run dev
   ```
