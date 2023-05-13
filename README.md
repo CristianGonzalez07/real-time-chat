@@ -26,7 +26,7 @@
 
   ```bash
   VITE_API_URL='url-de-tu-api'
-  VITE_WS_URL=ws:'url-del-ws-tu-api'
+  VITE_WS_URL='url-del-ws-tu-api'
   ```
 
 ## Ejecución
