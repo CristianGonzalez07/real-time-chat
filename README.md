@@ -37,3 +37,5 @@
   ```bash
   npm run dev
   ```
+## API
+  The API in charge of serving this APP is [here](https://github.com/CristianGonzalez07/real-time-chat-API)
